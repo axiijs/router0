@@ -49,7 +49,7 @@ export class Router<T> extends ManualCleanup{
         redirect: undefined,
         strictHandler: undefined
     }
-    private unlisten: () => void
+    public unlisten: () => void
     constructor(
         public data: InputRouteData<T>[],
         public history = createBrowserHistory(),
