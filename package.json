@@ -2,7 +2,7 @@
   "name": "router0",
   "version": "1.0.0",
   "scripts": {
-    "test": "vitest",
+    "test": "vitest run",
     "build": "vite build --config vite.prod.config.ts",
     "release": "release-it"
   },
