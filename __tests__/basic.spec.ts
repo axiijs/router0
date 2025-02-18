@@ -57,7 +57,8 @@ describe('basic util', () => {
 
     test('with sub router', () => {
         // window.history.pushState({}, '', '/f1')
-        const subRouter = router.derive('/f1', [{
+        const SubRouter = router.derive('/f1')
+        const subRouter = new SubRouter([{
             path: '/p1',
             handler: {
                 title: 'p1'
@@ -101,7 +102,8 @@ describe('basic util', () => {
             redirect: '/f1'
         }])
 
-        router.derive('/f1', [{
+        const SubRouter = router.derive('/f1')
+        new SubRouter([{
             path: '/p1',
             handler: {
                 title: 'p1'
@@ -136,7 +138,8 @@ describe('basic util', () => {
         expect(window.location.pathname === '/f1')
         expect(router.handler()).toMatchObject({title: 'f1'})
 
-        router.derive('/f1', [{
+        const SubRouter = router.derive('/f1')
+        new SubRouter([{
             path: '/',
             redirect: '/p1'
         }])
@@ -149,7 +152,8 @@ describe('basic util', () => {
         expect(window.location.pathname === '/f1')
         expect(router.handler()).toMatchObject({title: 'f1'})
 
-        const subRouter = router.derive('/f1',[{
+        const SubRouter = router.derive('/f1')
+        const subRouter = new SubRouter([{
             path: '/p1',
             handler: {
                 title: 'p1'

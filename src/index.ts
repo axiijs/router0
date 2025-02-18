@@ -215,8 +215,14 @@ export class Router<T> extends ManualCleanup{
         this.searchParams(currentParams)
     }
 
-    derive(path: string = this.path(), data: InputRouteData<T>[] = []) {
-        return new Router(data, this.history, `${this.parentPath}${path}`, this)
+    derive(path: string = this.path.raw) {
+        const base = this
+        const basePath = `${base.parentPath}${path}`
+        return class SubRouter extends Router<T> {
+            constructor(public data: InputRouteData<T>[], public subParentPath: string = '' ) {
+                super(data, base.history, `${basePath}${subParentPath}`, base)
+            }
+        }
     }
 }
 
